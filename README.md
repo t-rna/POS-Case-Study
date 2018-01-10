@@ -1,3 +1,3 @@
 # POS-Case-Study
 
-A sample POS application utilizing OOP design principles
+A sample POS application utilizing OOP design patterns

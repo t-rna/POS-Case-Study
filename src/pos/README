@@ -1,0 +1,36 @@
+README
+
+Simulator.java simulates (primitively) UC1-Process Sale.
+Pluggable tax calculators and composite pricing strategies implemented as described in assignment 5.
+
+-- Tax Calculator --
+
+config.properties contains an entry called TAX_CALC that specifies what tax calculator to be used.
+
+Simply placing another calculator that implements the interface and changing the entry in the config
+file is sufficient for it to be used.
+
+-- Pricing Strategy --
+
+Regular pricing strategy pattern implemented in getSalePricingStrategy in PricingStrategyFactory
+Returns an atomic pricing strategy based on some criteria (in this case, the day of the week)
+
+Composite pricing strategy pattern implemented in getCompositeSalePricingStrategy.
+CompositePricingStrategy's list contains two atomic pricing strategies.
+The one returned is the strategy that gives the customer the lowest price at checkout.
+
+Example of composite (based on rules of each strategy):
+
+itemID: 100 (milk) goes for $2
+itemID: 200 (pencil) goes for $1
+
+Customer buys 9 milks and 1 pencil and pays $19.
+($19 * 0.95 = $18.05)  >  ($19 - $1 = $18)  -> AbsoluteDiscountOverThresholdStrategy applies
+
+Customer buys 10 milks and pays $20. 
+($20 * 0.95 = 19)  ==  ($20 = $1 = $19)  -> PercentDiscountStrategy applies (both valid, but this is first in list)
+
+Customer buys 11 milks and pays $22. 
+($22 * 0.95 = $20.9)  <  ($22 - $1 = $21)  -> PercentDiscountStrategy applies
+
+ 

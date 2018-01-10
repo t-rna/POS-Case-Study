@@ -1,7 +1,7 @@
 README
 
 Simulator.java simulates (primitively) UC1-Process Sale.
-Pluggable tax calculators and composite pricing strategies implemented as described in assignment 5.
+Pluggable tax calculators and composite pricing strategies implemented.
 
 -- Tax Calculator --
 
